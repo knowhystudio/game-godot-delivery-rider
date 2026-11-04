@@ -1,7 +1,7 @@
 # Delivery Rider — First Playable Godot Slice (local only)
 
-Godot 4.3 project. No GitHub repo, no publishing, no real names, no licensed
-assets — every visual is a built-in primitive mesh with a plain colour.
+Godot 4.3 project. Repo: knowhystudio/game-godot-delivery-rider. No publishing,
+no real names. Visuals are built-in primitives plus CC0 Kenney assets (see below).
 
 ## Playable demo (built, not just a README)
 
@@ -190,3 +190,22 @@ Godot_v4.3-stable_linux.x86_64 --headless --path . res://scenes/test_play.tscn
   vehicle table, then per-stage stations, then the collection layer.
 - Replace primitive meshes with Codex / Forge art only when that art exists
   and matches the third-person panoramic direction above.
+
+## 2026-11-03 — Traffic + pedestrians (scenes/shots2.tscn)
+
+Staging scene, not the main game loop. Open `scenes/shots2.tscn` and run it
+(headless screenshot method: `xvfb-run` + Mesa, Godot 4.3,
+`get_viewport().get_texture().get_image().save_png()`).
+
+- Traffic: Kenney Car Kit v3.1 (CC0, GLB, `kenney/cars/`), 5 types in the scene
+  (sedan/taxi/van/truck/police), 4 separate wheels each, native scale 1.0.
+  Cars drive their lanes and loop; wheels spin at v/r.
+- Pedestrians: Kenney Animated Characters Protagonists (CC0,
+  `kenney/characters/characterMedium.glb`, Idle/Run/Jump baked in). The pack
+  has NO walk animation, so pedestrians stand on the sidewalks playing Idle.
+- Crash is real logic: a moving car hitting the rider costs integrity -20%
+  (one spill, 2 s cooldown), stamina -25, time -5 s, speed zeroed, shake +45.
+- City: Kenney City Kit Roads + Commercial (CC0, `kenney/roads/`,
+  `kenney/commercial/`), x4 scale against the 1.9 m rider.
+- Limits: rider is still the prototype yellow box (no limbs, no bike);
+  pedestrians don't walk; no traffic-light behaviour; minimap doesn't show cars.
